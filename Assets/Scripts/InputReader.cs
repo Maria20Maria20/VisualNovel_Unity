@@ -26,7 +26,7 @@ public class InputReader : MonoBehaviour, Controls.IDialogueActions
     {
         if (context.started && _dialogues.DialogPlay)
         {
-            _dialogues.ContinueStory(_dialogues._choiceButtonsPanel.activeInHierarchy);
+            _dialogues.ContinueStory(_dialogues.choiceButtonsPanel.activeInHierarchy);
         }
     }
 }

@@ -16,7 +16,7 @@ public class Dialogues : MonoBehaviour
     private TextMeshProUGUI _dialogueText;
     private TextMeshProUGUI _nameText;
 
-    [HideInInspector] public GameObject _choiceButtonsPanel;
+    [HideInInspector] public GameObject choiceButtonsPanel;
     private GameObject _choiceButton;
     private List<TextMeshProUGUI> _choicesText = new();
     private List<Character> characters = new();
@@ -30,7 +30,7 @@ public class Dialogues : MonoBehaviour
         _dialoguePanel = dialoguesInstaller.dialoguePanel;
         _dialogueText = dialoguesInstaller.dialogueText;
         _nameText = dialoguesInstaller.nameText;
-        _choiceButtonsPanel = dialoguesInstaller.choiceButtonsPanel;
+        choiceButtonsPanel = dialoguesInstaller.choiceButtonsPanel;
         _choiceButton = dialoguesInstaller.choiceButton;
     }
     private void Awake()
@@ -95,15 +95,15 @@ public class Dialogues : MonoBehaviour
     private void ShowChoiceButtons()
     {
         List<Choice> currentChoices = _currentStory.currentChoices;
-        _choiceButtonsPanel.SetActive(currentChoices.Count != 0);
+        choiceButtonsPanel.SetActive(currentChoices.Count != 0);
         if (currentChoices.Count<=0){return;}
-        _choiceButtonsPanel.transform.Cast<Transform>().ToList().ForEach(child => Destroy(child.gameObject));
+        choiceButtonsPanel.transform.Cast<Transform>().ToList().ForEach(child => Destroy(child.gameObject));
         _choicesText.Clear();
         for (int i = 0; i < currentChoices.Count; i++)
         {
             GameObject choice = Instantiate(_choiceButton);
             choice.GetComponent<ButtonAction>().index = i;
-            choice.transform.SetParent(_choiceButtonsPanel.transform);
+            choice.transform.SetParent(choiceButtonsPanel.transform);
 
             TextMeshProUGUI choiceText = choice.GetComponentInChildren<TextMeshProUGUI>();
             choiceText.text = currentChoices[i].text;
